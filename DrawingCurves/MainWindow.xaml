@@ -1,0 +1,56 @@
+﻿<Window x:Class="DrawingCurves.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DrawingCurves"
+        mc:Ignorable="d"
+        Title="MainWindow" MinWidth="500" MinHeight="494"
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" 
+        Width="832" DataContext="">
+    <Window.Resources>
+
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+        <Grid DockPanel.Dock="Top" Height="49">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="F(x) = "/>
+            <TextBox x:Name="equation" Grid.Column="1" MinWidth="150" Width="200" FontSize="15"/>
+            <Button x:Name="plotButton" Content="Plot" Margin="0" Width="75" Grid.Column="2" VerticalAlignment="Center" Click="plotButton_Click"/>
+            <TextBlock Text="X:" Grid.Column="3"/>
+            <TextBox x:Name="resultXTextBox" Grid.Column="4" MinWidth="150" IsReadOnly="True" Width="150" FontSize="15"/>
+            <TextBlock Text="Y:" Grid.Column="5"/>
+            <TextBox x:Name="resultYTextBox" Grid.Column="6" MinWidth="150" IsReadOnly="True" Width="200" FontSize="15"/>
+        </Grid>
+        <StackPanel DockPanel.Dock="Left">
+            <ToggleButton x:Name="xAxisButton" Style="{StaticResource SideButtonStyle}" Click="ZoomMode_Click">X-Axis</ToggleButton>
+            <ToggleButton x:Name="yAxisButton" Style="{StaticResource SideButtonStyle}" Click="ZoomMode_Click">Y-Axis</ToggleButton>
+            <ToggleButton x:Name="xyAxisButton" Style="{StaticResource SideButtonStyle}" Click="ZoomMode_Click">XY-Axis</ToggleButton>
+            <Button x:Name="zoomInButton" Content="+" FontSize="30" Padding="0" Margin="0" VerticalAlignment="Center" Click="zoomInButton_Click" />
+            <Button x:Name="ZoomOutButton" Content="-" FontSize="30" Padding="0" Margin="0" VerticalAlignment="Center" Click="ZoomOutButton_Click" />
+            <Button x:Name="resetButton" Content="Reset" FontSize="20" Padding="8" Margin="0" VerticalAlignment="Center" Click="resetButton_Click" />
+        </StackPanel>
+        <Border DockPanel.Dock="Right" BorderBrush="Red" BorderThickness="5" CornerRadius="10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="450" Height="400" Margin="5">
+            <Canvas x:Name="myCanvas" ClipToBounds="True" Background="#FFFBFBFB" MinWidth="350" MinHeight="350" Margin="0"/>
+        </Border> 
+        <Grid DockPanel.Dock="Left" Margin="10" Width="250">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock FontFamily="Verdana" FontSize="25" HorizontalAlignment="Center">Plot Info</TextBlock>
+            <ListBox Grid.Row ="1"  Padding="0" FontSize="15" x:Name="plotInfoList" Background="#FFF7F7F7"/>
+        </Grid>
+    </DockPanel>
+</Window>
